@@ -1,0 +1,15 @@
+Hi! Welcome to this demo. Today I'm going to show off a very nice quantum physics oriented tensor library created by Thomas Baker. The repository is available at
+https://github.com/bakerte/DMRJtensor.jl.git
+and you can just run a git clone command to get it. Alternatively, you can go to Thomas Baker's github, bakerte, and download it from there.
+
+Today, I will use a slightly modified version of Baker's code in two ways:
+
+(1) AKLT with an automatic construction of the Hamiltonian. This is a nice feature that is built in— it lets you construct Hamiltonians for spin chains of limited length/with relatively uncomplicated Hamiltonians in a blitz. This method will *not* work well for long or complicated chains. You will spend more time constructing the Hamiltonian than diagonalizing it.
+
+(2) A more careful construction of the Hamiltonian, which involves some careful memory allocation. The details of this methodology are kind of complicated and not so interesting so I will glaze over them for the most part. Still, if you hope to do research with DMRjulia, it is likely that you will need to learn this. Please email me (alex_jacoby@brown.edu) or look at my github (alexjacoby-phys) if you are interested in learning how to do this in more detail.
+
+(3) With the results of (2) in hand we will explore the entanglement structures of various phases of a general bilinear-biquadratic model. I will review basic details of entanglement; reduced density matrices.
+
+(4) I want to give some comments on the information theory of these problems; tensor calculations by hand; factorization of density matrices; MPS tricks.
+
+My goal is to get through most of these things, but I will have to go fast. 
