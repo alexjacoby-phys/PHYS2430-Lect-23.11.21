@@ -24,10 +24,11 @@ include(join([path,"DMRjulia.jl"]))
 using .DMRjulia
 using LinearAlgebra
 using Plots
+using LaTeXStrings
 
 
 
-Ns = 101
+Ns = 20
 MXM = 40 #6^Ns
 psi = makePsi0(Ns)
 
@@ -60,6 +61,9 @@ open(filename,"w") do io
     writedlm(filename, savearray)
 end
 
+#let's also plot this-- we will want to come back here when we do the bilinear-biquadratic model so we know we're getting the same ground state.
+plot(2:Ns,params.SvNvec, label = false, ylabel = "von Neumann Entanglement Entropy", xlabel = "Bipartition placement (between site i and i+1)")
+
 
 
 
@@ -70,6 +74,7 @@ end
 
 id, X, Y, YL, YR, Z, BLL, BLR, BQL, BQR = spinOps()
 correlationfuncs = zeros(Float64,Ns,Ns)
+k=10
 for i in 1:Ns, j in 1:Ns
     cor  = mpoterm(1.,[X,X],[i,j],base)+ mpoterm(1.,[YL,YR],[i,j],base)+ mpoterm(1.,[Z,Z],[i,j],base)
     #one can see that there is a remaining bug in baker's code for self-coupling terms. The correlation function of a site with itself should be two but is zero.
@@ -79,7 +84,7 @@ for i in 1:Ns, j in 1:Ns
         correlationfuncs[i,j] = 2.
     end
 end
-plot(Vector(1:Ns),correlationfuncs[10,:], legend = false)
+plot(Vector(1:Ns),correlationfuncs[k,:], legend = false, ylabel = string("Correlation Function with site ",k), xlabel = "Site i")
 for i in 1:Ns, j in 1:Ns
     cor  = mpoterm(1.,[X,X],[i,j],base)+ mpoterm(1.,[YL,YR],[i,j],base)+ mpoterm(1.,[Z,Z],[i,j],base)
     #one can see that there is a remaining bug in baker's code for self-coupling terms. The correlation function of a site with itself should be two but is zero.
@@ -89,9 +94,4 @@ for i in 1:Ns, j in 1:Ns
         correlationfuncs[i,j] = 2.
     end
 end
-plot(Vector(1:Ns),correlationfuncs[10,:], legend = false)
-
-
-
-#plot(2:Ns,YAX,title = string("SvN of xVBS Chain of Length ",Ns), label =  nothing, xlabel = "Bipartition Placement", ylabel = "Entanglement Entropy")
-#savefig(string(Ns,"_site"))
+plot(Vector(1:Ns),correlationfuncs[10,:], legend = false, ylabel = string("Magnitude of Correlation Function with site ",k), xlabel = "Site i")

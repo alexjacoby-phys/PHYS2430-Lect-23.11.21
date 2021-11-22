@@ -13,3 +13,6 @@ Today, I will use a slightly modified version of Baker's code in two ways:
 (4) I want to give some comments on the information theory of these problems; tensor calculations by hand; factorization of density matrices; MPS tricks.
 
 My goal is to get through most of these things, but I will have to go fast. If you have any questions, please let me know. I will do my best to address them. If you want to talk to me about anything after class also let me know!
+
+
+Phase diagram pulled from 2111.04561.
